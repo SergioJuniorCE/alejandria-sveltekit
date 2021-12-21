@@ -1,21 +1,11 @@
 <script lang="ts">
-	import axios from 'axios';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	let code = $page.query.get('code');
 	let token: string;
-
+  let url = 'http://localhost:8080/auth/token';
 	onMount(async () => {
-		const res = await fetch('localhost:8080/auth/token', {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				code: code
-			}),
-			redirect: 'follow'
-		});
+		const res = await fetch(`${url}?code=${code}`);
 		const data = await res.json();
     token = data.token;
 	});
@@ -23,4 +13,5 @@
 
 <h1>Logged in</h1>
 <p>code {code}</p>
-<p>token {token}</p>
+<p>token {JSON.stringify(token)}</p>
+<p>url {url}</p>

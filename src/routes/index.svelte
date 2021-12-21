@@ -1,19 +1,30 @@
+<script context="module">
+  export async function load({ page, fetch, session, context}) {
+    const res = await fetch('http://localhost:8080/universities')
+    const data = await res.json();
+    return {
+      props: {
+        universities: data
+      }
+    }
+  }
+</script>
+
 <script lang='ts'>
   import Select from 'svelte-select';
 
-  import { universities } from '../stores/stores'; 
+  export let universities: any[];
 
-  let items = [
-    {value: 'chocolate', label: 'Chocolate'},
-    {value: 'pizza', label: 'Pizza'},
-    {value: 'cake', label: 'Cake'},
-    {value: 'chips', label: 'Chips'},
-    {value: 'ice-cream', label: 'Ice Cream'},
-  ];
+  let items = universities.map((university) => {
+    return {
+      value: university.name,
+      label: university.name
+    }
+  });
 
-  let value = {value: 'cake', label: 'Cake'};
+  let value = items[0];
 
-  function handleSelect(event) {
+  function handleSelect(event: { detail: any; }) {
     console.log('selected item', event.detail);
   }
 </script>
@@ -28,7 +39,25 @@
   <p class="">Universiasddades</p>
 	<Select {items} {value} on:select={handleSelect}></Select>
 
-  {#each $universities as university}
-    <p>{university}</p>
-  {/each}
+  <!-- Create a table of topics -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each universities as university}
+         <tr>
+            <td>{university.name}</td>
+            <td>{university.description}</td>
+            <td>{university.createdAt}</td>
+            <td>{university.updatedAt}</td>
+          </tr>
+      {/each}
+    </tbody>
+  </table>
 </div>

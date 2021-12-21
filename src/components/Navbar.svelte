@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container">
-		<a class="navbar-brand" href="#!">Navbar</a>
+		<a class="navbar-brand" href="/">Navbar</a>
 		<button
 			class="navbar-toggler"
 			type="button"
@@ -21,9 +21,10 @@
 					<a class="nav-link" href="#!">Link</a>
 				</li>
 				<li class="nav-item dropdown">
+					<!-- svelte-ignore a11y-invalid-attribute -->
 					<a
 						class="nav-link dropdown-toggle"
-						href="#!"
+						href="#"
 						id="navbarDropdown"
 						role="button"
 						data-bs-toggle="dropdown"
