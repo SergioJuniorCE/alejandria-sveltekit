@@ -2,7 +2,7 @@
   "name": "alejandria-sveltekit",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "concurrently \"svelte-kit dev\" \"npm run watch:tailwind\"",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
@@ -29,8 +29,14 @@
   },
   "type": "module",
   "dependencies": {
+    "autoprefixer": "^10.4.0",
     "axios": "^0.24.0",
+    "concurrently": "^6.5.1",
+    "cross-env": "^7.0.3",
+    "postcss-cli": "^9.1.0",
     "qs": "^6.10.2",
-    "svelte-select": "^4.4.6"
+    "svelte-select": "^4.4.6",
+    "tailwindcss": "^3.0.7",
+    "vite": "^2.7.6"
   }
 }

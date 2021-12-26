@@ -1,5 +1,6 @@
-<script lang='ts'>
-  import Navbar from '$components/Navbar.svelte';
+<script lang="ts">
+	import Navbar from '$components/Navbar.svelte';
 </script>
-<Navbar/>
-<slot/>
+
+<Navbar />
+<slot />

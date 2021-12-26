@@ -1,3 +1,29 @@
+<script context="module">
+	import { request } from '$lib/utils';
+	export async function load({}) {
+		const data = await request('get', '/universities');
+		return {
+			props: {
+				universities: data
+			}
+		};
+	}
+</script>
+
+<script lang="ts">
+	import { browserGet } from '$lib/utils';
+	import { onMount } from 'svelte';
+
+	let loggedIn: boolean;
+	let jwt: string;
+
+	onMount(async () => {
+		jwt = browserGet('jwt');
+		if (jwt) {
+		}
+	});
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container">
 		<a class="navbar-brand" href="/">Navbar</a>
@@ -43,9 +69,13 @@
 					<a href="#!" class="nav-link disabled">Disabled</a>
 				</li>
 			</ul>
-			<form class="d-flex">
-				<a href="/auth"class="btn btn-success">Login</a>
-			</form>
+			{#if jwt === undefined}
+				<form class="d-flex">
+					<a href="/auth" class="btn btn-success">Login</a>
+				</form>
+			{:else}
+				
+			{/if}
 		</div>
 	</div>
 </nav>
