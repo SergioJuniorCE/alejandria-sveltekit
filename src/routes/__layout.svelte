@@ -1,6 +1,10 @@
 <script lang="ts">
+	import '../tailwind.css';
+	import '../app.css';
 	import Navbar from '$components/Navbar.svelte';
 </script>
 
 <Navbar />
-<slot />
+<div class="">
+	<slot />
+</div>
